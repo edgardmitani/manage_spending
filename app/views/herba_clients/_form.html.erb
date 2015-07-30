@@ -1,0 +1,65 @@
+<% if @client.errors.any? %>
+	<div id="error_explanation">
+		<%= t("general.form_error") %>
+	</div>
+<% end %>
+
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.client") %></h3>
+				</div>
+				<%= form_for @client do |f| %>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-file-text-o"></i>
+								</div>
+								<%= f.text_field :name, class: "form-control", placeholder: t("placeholder.name") %>
+								<%= error_tag @client, :name %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-envelope"></i>
+								</div>
+								<%= f.text_field :email, class: "form-control", placeholder: t("placeholder.email") %>
+								<%= error_tag @client, :email %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-phone"></i>
+								</div>
+								<%= f.text_field :phone, class: "form-control", placeholder: t("placeholder.phone_example") %>
+								<%= error_tag @client, :phone %>
+							</div>
+						</div>
+						<%= f.fields_for :herba_address do |a| %>
+							<%= render "address_fields", :f => a %>
+						<% end %>
+						<div class="box-header">
+							<h3 class="box-title"><%= t("title.title") %></h3>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-caret-square-o-down"></i>
+								</div>
+								<%= f.select :herba_title_id, options_from_collection_for_select(get_herba_titles, "id", "name", @client.herba_title_id), {}, class: "form-control" %>
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<%= f.submit button_name, class: "btn btn-primary" %>
+	        </div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,2 @@
+module HerbaTitlesHelper
+end

@@ -1,0 +1,33 @@
+<% if @income.errors.any? %>
+	<div id="error_explanation">
+		<%= t("gereral.form_error") %>
+	</div>
+<% end %>
+
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.income") %></h3>
+				</div>
+				<%= form_for @income do |f| %>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-money"></i>
+								</div>
+								<%= f.text_field :value, class: "form-control", placeholder: t("placeholder.value") %>
+								<%= error_tag @income, :value %>
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<%= f.submit button_name, class: "btn btn-primary" %>
+	        </div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

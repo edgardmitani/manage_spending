@@ -1,0 +1,79 @@
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.transactions") %></h3>
+					<div class="box-tools">
+						<%= link_to t("link.registering"), new_home_transaction_path, class: "btn-register btn-default pull-right" %>
+						<div class="input-group-table">
+							<%= form_tag home_transactions_path, method: :get do %>
+								<div class="input-group-btn-table">
+	              	<%= button_tag "", class: "btn btn-sm btn-default" do %>
+	              		<i class="fa fa-search"></i>
+	              	<% end%>
+	              </div>
+								<%= select_tag :home_category_id, options_from_collection_for_select(get_home_categories, "id", "name", params[:home_category_id]), :include_blank => true, class: "form-control-table pull-right" %>
+								<%= select_tag :home_client_id, options_for_select([["", ""], ["Akio", 2]], params[:home_client_id]), class: "form-control-table pull-right" %>
+							<% end %>
+            </div>
+					</div>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-striped">
+						<tr>
+							<th><%= t("table.date") %></th>
+							<th><%= t("table.category") %></th>
+							<th><%= t("table.mode") %></th>
+							<th><%= t("table.value") %></th>
+							<th><%= t("table.description") %></th>
+							<th colspan="2"></th>
+						</tr>
+						<% @transactions.each do |transaction| %>
+							<tr>
+								<td><%= format_date(transaction.created_at) %></td>
+								<td><%= transaction.home_category.name %></td>
+								<td><%= transaction.translate_mode %></td>
+								<td><%= format_money(transaction.value) %></td>
+								<td><%= transaction.description %></td>
+								<td><%= link_to "", edit_home_transaction_path(transaction), class: "fa fa-edit", title: t("link.edit") %></td>
+								<td><%= link_to "", transaction, method: :delete, data: { confirm: t("flash_message.are_you_sure") }, class: "fa fa-trash-o", title: t("link.delete") %></td>
+							</tr>
+						<% end %>
+					</table>
+					<div class="box-footer clearfix">
+						<div class="pagination pagination-sm no-margin pull-right">
+							<%= will_paginate @transactions %>
+						</div>
+					</div>
+				</div>
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.future_transactions") %></h3>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-striped">
+						<tr>
+							<th><%= t("table.date") %></th>
+							<th><%= t("table.category") %></th>
+							<th><%= t("table.mode") %></th>
+							<th><%= t("table.value") %></th>
+							<th><%= t("table.description") %></th>
+							<th colspan="2"></th>
+						</tr>
+						<% @future_transactions.each do |transaction| %>
+							<tr>
+								<td><%= format_date(transaction.created_at) %></td>
+								<td><%= transaction.home_category.name %></td>
+								<td><%= transaction.translate_mode %></td>
+								<td><%= format_money(transaction.value) %></td>
+								<td><%= transaction.description %></td>
+								<td><%= link_to "", edit_home_transaction_path(transaction), class: "fa fa-edit", title: t("link.edit") %></td>
+								<td><%= link_to "", transaction, method: :delete, data: { confirm: t("flash_message.are_you_sure") }, class: "fa fa-trash-o", title: t("link.delete") %></td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,2 @@
+module HerbaProfilesHelper
+end

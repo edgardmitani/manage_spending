@@ -1,0 +1,2 @@
+module HerbaIncomesHelper
+end

@@ -1,0 +1,48 @@
+<section class="content-header">
+	<h1>
+		<%= t("title.profiles") %>
+		<%= link_to t("link.add"), new_herba_profile_path(client_id: @client), class: "btn-register btn-default pull-right" %>
+	</h1>
+</section>
+<section class="content">
+	<div class="row">
+		<% @client.herba_profiles.each do |profile| %>
+			<div class="col-lg-3 col-xs-6">
+				<div class="small-box bg-aqua">
+					<div class="inner">
+						<table>
+							<tr>
+			      		<td><%= t("profile.weight") %>: </td>
+			      		<td><%= format_kg(profile.weight) %></td>
+			      	</tr>
+			      	<tr>
+			      		<td><%= t("profile.chest") %>: </td>
+			      		<td><%= format_cm(profile.chest) %></td>
+			      	</tr>
+			      	<tr>
+			      		<td><%= t("profile.rib") %>: </td>
+			      		<td><%= format_cm(profile.rib) %></td>
+			      	</tr>
+			      	<tr>
+			      		<td><%= t("profile.belly") %>: </td>
+			      		<td><%= format_cm(profile.belly) %></td>
+			      	</tr>
+			      	<tr>
+			      		<td><%= t("profile.hip") %>: </td>
+			      		<td><%= format_cm(profile.hip) %></td>
+			      	</tr>
+						</table>
+					</div>
+					<div class="icon">
+						<i class="ion ion-stats-bars"></i>
+					</div>
+					<div class="small-box-footer">
+						<%= format_date(profile.created_at) %>
+						<%= link_to "", edit_herba_profile_path(profile, client_id: @client.id), class: "fa fa-edit", title: t("link.edit") %>
+						<%= link_to "", profile, method: :delete, data: { confirm: t("flash_message.are_you_sure") }, class: "fa fa-trash-o", title: t("link.delete") %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</section>

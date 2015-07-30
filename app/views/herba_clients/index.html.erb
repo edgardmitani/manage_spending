@@ -1,0 +1,57 @@
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.clients") %></h3>
+					<div class="box-tools">
+						<%= link_to t("link.registering"), new_herba_client_path, class: "btn-register btn-default pull-right" %>
+						<div class="input-group-table">
+							<%= form_tag herba_clients_path, method: :get do %>
+								<div class="input-group-btn-table">
+	              	<%= button_tag "", class: "btn btn-sm btn-default" do %>
+	              		<i class="fa fa-search"></i>
+	              	<% end%>
+	              </div>
+								<%= text_field_tag :client_name, params[:client_name], class: "form-control input-sm pull-right", style: "width: 150px;", placeholder: t("placeholder.client_name") %>
+								
+							<% end %>
+            </div>
+					</div>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-striped">
+						<tr>
+							<th><%= t("table.name") %></th>
+							<th><%= t("table.email") %></th>
+							<th><%= t("table.phone") %></th>
+							<th><%= t("table.status") %></th>
+							<th><%= t("table.to_receive") %></th>
+							<th colspan="6"></th>
+						</tr>
+						<% @clients.each do |client| %>
+							<% status = client.status? %>
+							<tr>
+								<td><%= link_to "", herba_products_path(client_id: client.id), class: "fa fa-shopping-cart", title: t("link.add_items") %> <%= link_to client.name, new_herba_transaction_path(client_id: client.id) %></td>
+								<td><%= client.email %></td>
+								<td><%= client.phone %></td>
+								<td><font color=<%= status ? "green" : "red" %>><%= status ? "Ativo" : "Inativo" %></font></td>
+								<td><%= format_money(client.payment_balance) if pending_item?(client) %></td>
+								<td><%= link_to "", herba_profile_path(client), class: "fa fa-book", title: t("link.profile_list") %></td>
+								<td><%= link_to "", herba_item_path(client), class: "fa fa-table", title: t("link.items_list") %></td>
+								<td><%= link_to "", client, class: "fa fa-info", title: t("link.detail") %></td>
+								<td><%= link_to "", edit_herba_client_path(client), class: "fa fa-edit", title: t("link.edit") %></td>
+								<td><%= link_to "", client, method: :delete, data: { confirm: t("flash_message.are_you_sure") }, class: "fa fa-trash-o", title: t("link.delete") %></td>
+							</tr>
+						<% end %>
+					</table>
+					<div class="box-footer clearfix">
+						<div class="pagination pagination-sm no-margin pull-right">
+							<%= will_paginate @clients if @clients.present? %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,78 @@
+<% if @profile.errors.any? %>
+	<div id="error_explanation">
+		<%= t("general.form_error") %>
+	</div>
+<% end %>
+
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.profile") %></h3>
+				</div>
+				<%= form_for @profile do |f| %>
+					<%= hidden_field_tag "herba_profile[herba_client_id]", params[:client_id] %>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-file-text-o"></i>
+								</div>
+								<%= f.text_field :weight, class: "form-control", placeholder: t("placeholder.weight") %>
+								<%= error_tag @profile, :weight %>
+							</div>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-file-text-o"></i>
+								</div>
+								<%= f.text_field :chest, class: "form-control", placeholder: t("placeholder.chest") %>
+								<%= error_tag @profile, :chest %>
+							</div>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-file-text-o"></i>
+								</div>
+								<%= f.text_field :rib, class: "form-control", placeholder: t("placeholder.rib") %>
+								<%= error_tag @profile, :rib %>
+							</div>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-file-text-o"></i>
+								</div>
+								<%= f.text_field :belly, class: "form-control", placeholder: t("placeholder.belly") %>
+								<%= error_tag @profile, :belly %>
+							</div>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-file-text-o"></i>
+								</div>
+								<%= f.text_field :hip, class: "form-control", placeholder: t("placeholder.hip") %>
+								<%= error_tag @profile, :hip %>
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<%= f.submit button_name, class: "btn btn-primary" %>
+	        </div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

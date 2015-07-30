@@ -1,0 +1,47 @@
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.products") %></h3>
+					<div class="box-tools">
+						<%= link_to t("link.registering"), new_herba_product_path, class: "btn-register btn-default pull-right" %>
+						<div class="input-group-table">
+							<%= form_tag herba_products_path, method: :get do %>
+								<div class="input-group-btn-table">
+	              	<%= button_tag "", class: "btn btn-sm btn-default" do %>
+	              		<i class="fa fa-search"></i>
+	              	<% end%>
+	              </div>
+								<%= select_tag :herba_category_id, options_from_collection_for_select(get_herba_categories, "id", "name", params[:category_id]), :include_blank => true, class: "form-control-table pull-right" %>
+							<% end %>
+            </div>
+					</div>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-striped">
+						<tr>
+							<th>ID</th>
+							<th><%= t("table.name") %></th>
+							<th><%= t("table.category") %></th>
+							<th><%= t("table.portion") %></th>
+							<th><%= t("table.price") %></th>
+							<th colspan="3"></th>
+						</tr>
+						<% @products.each do |product| %>
+							<tr>
+								<td><%= product.code %></td>
+								<td><%= link_to "", add_item_herba_product_path(product), method: :post, data: { confirm: t("flash_message.are_you_sure") }, class: "fa fa-shopping-cart", title: t("link.add") if session[:client_id] %> <%= product.name %></td>
+								<td><%= product.herba_category.name %></td>
+								<td><%= product.portion %></td>
+								<td><%= format_money(product.price) %></td>
+								<td><%= link_to "", edit_herba_product_path(product), class: "fa fa-edit", title: t("link.edit") %></td>
+								<td><%= link_to "", product, method: :delete, data: { confirm: t("flash_message.are_you_sure") }, class: "fa fa-trash-o", title: t("link.delete") %></td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

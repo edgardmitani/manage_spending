@@ -1,0 +1,65 @@
+<% if @transaction.errors.any? %>
+	<div id="error_explanation">
+		<%= t("general.form_error") %>
+	</div>
+<% end %>
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.transaction") %></h3>
+				</div>
+				<%= form_for @transaction do |f| %>
+					<div class="box-body">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-money"></i>
+								</div>
+								<%= f.text_field :value, class: "form-control", placeholder: t("placeholder.money_example"), autofocus: true %>
+								<%= error_tag @transaction, :value %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-caret-square-o-down"></i>
+								</div>
+								<%= f.select :home_client_id, options_from_collection_for_select(get_home_clients, "id", "name", @transaction.home_client_id), {}, class: "form-control" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-caret-square-o-down"></i>
+								</div>
+								<%= f.select :home_category_id, options_from_collection_for_select(get_home_categories, "id", "name", @transaction.home_category_id), {}, class: "form-control" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-caret-square-o-down"></i>
+								</div>
+								<%= f.select :mode, options_for_select([["Débito", "debit"], ["Crédito", "credit"], ["Renda", "income"], ["Reembolso", "repayment"]], @transaction.mode), {}, class: "form-control" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-file-text-o"></i>
+								</div>
+								<%= f.text_field :description, class: "form-control", placeholder: t("placeholder.description") %>
+								<%= error_tag @transaction, :description %>
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<%= f.submit button_name, class: "btn btn-primary" %>
+	        </div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

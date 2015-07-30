@@ -1,14 +1,141 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ManageSpending</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+	<head>
+	  <title>Mitanix</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+  <body class="skin-blue">
+    <header class="header">
+    	<%= link_to "Mitanix", root_path, class: "logo" %>
+      <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-right">
+          <ul class="nav navbar-nav">
+						<li class="dropdown user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="glyphicon glyphicon-user"></i>
+								<span><%= current_user.email %> <i class="caret"></i></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="user-header bg-light-blue">
+									<p>
+										Edgard A. Mitani
+										<small>Programador Pleno</small>
+									</p>
+								</li>
+								<!-- Menu Footer-->
+								<li class="user-footer">
+									<div class="pull-right">
+										<%= link_to t("link.log_out"), destroy_user_session_path, :method => :delete, class: "btn btn-default btn-flat" %>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+      <aside class="left-side sidebar-offcanvas">
+        <section class="sidebar">
+          <div class="user-panel">
+            <div class="pull-left info">
+            	<% if session[:client_id].present? && HerbaClient.find_by_id(session[:client_id]) %>
+            		<% 
+            			@client = HerbaClient.find_by_id(session[:client_id]) 
+            			@client.id == 1 ? balance = @client.balance : balance = @client.payment_balance
+            		%>
+              	<p><%= @client.name %></p>
+              	<p><%= @client.id == 1 ? t("layout.balance") : t("layout.pending") %>: <font color=<%= get_color(balance) %>><%= format_money(balance) %></font></p>
+              <% end %>
+            </div>
+          </div>
+					<ul class="sidebar-menu">
+						<li class=<%= active_menu("dashboard") %>>
+							<%= link_to root_path do %><i class="fa fa-dashboard"></i><span><%= t("menu.dashboard") %></span><% end %>
+						</li>
+						<li class="treeview">
+              <a href="#">
+                <i class="fa fa-bar-chart-o"></i>
+                <span><%= t("menu.expenses") %></span>
+              </a>
+              <ul class="treeview-menu" style="display: block;">
+                <li class=<%= active_menu("home_categories") %>>
+									<%= link_to home_categories_path do %><i class="fa fa-tag"></i><span><%= t("menu.categories") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("home_clients") %>>
+									<%= link_to home_clients_path do %><i class="fa fa-tag"></i><span><%= t("menu.clients") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("home_credit_or_debit") %>>
+									<%= link_to new_home_transaction_path do %><i class="fa fa-money"></i><span><%= t("menu.credit_or_debit") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("home_credit_card") %>>
+									<%= link_to new_credit_card_home_transactions_path do %><i class="fa fa-money"></i><span><%= t("menu.credit_card") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("home_transfer") %>>
+									<%= link_to new_transfer_home_transactions_path do %><i class="fa fa-money"></i><span><%= t("menu.transfer") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("home_transactions") %>>
+									<%= link_to home_transactions_path do %><i class="fa fa-money"></i><span><%= t("menu.transactions") %></span><% end %>
+								</li>
+              </ul>
+          	</li>
+						<li class="treeview">
+              <a href="#">
+                <i class="fa fa-bar-chart-o"></i>
+                <span><%= t("menu.herbalife") %></span>
+              </a>
+              <ul class="treeview-menu" style="display: block;">
+                <li class=<%= active_menu("herba_clients") %>>
+									<%= link_to herba_clients_path do %><i class="fa fa-users"></i><span><%= t("menu.clients") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_categories") %>>
+									<%= link_to herba_categories_path do %><i class="fa fa-tag"></i><span><%= t("menu.categories") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_credit_or_debit") %>>
+									<%= link_to new_herba_transaction_path do %><i class="fa fa-money"></i><span><%= t("menu.credit_or_debit") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_items") %>>
+									<%= link_to herba_item_path(session[:client_id]) do %><i class="fa fa-table"></i><span><%= t("menu.items") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_profile") %>>
+									<%= link_to herba_profile_path(session[:client_id]) do %><i class="fa fa-book"></i><span><%= t("menu.profile") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_products") %>>
+									<%= link_to herba_products_path do %><i class="fa fa-shopping-cart"></i><span><%= t("menu.products") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_titles") %>>
+									<%= link_to herba_titles_path do %><i class="fa fa-level-up"></i><span><%= t("menu.titles") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_incomes") %>>
+									<%= link_to herba_incomes_path do %><i class="fa fa-usd"></i><span><%= t("menu.incomes") %></span><% end %>
+								</li>
+								<li class=<%= active_menu("herba_transactions") %>>
+									<%= link_to herba_transactions_path do %><i class="fa fa-money"></i><span><%= t("menu.transactions") %></span><% end %>
+								</li>
+              </ul>
+          	</li>
+          </ul>
+        </section>
+      </aside>
+      <aside class="right-side">
+      	<% if notice.present? %>
+	      	<div class="alert alert-success alert-dismissable">
+	          <i class="fa fa-check"></i>
+	          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	          <%= notice %>
+		      </div>
+		    <% end %>
+		    <% if alert.present? %>
+		    	<div class="alert alert-warning alert-dismissable">
+            <i class="fa fa-warning"></i>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= alert %>
+          </div>
+		    <% end %>
+        <%= yield %>
+      </aside>
+    </div>
+  </body>
 </html>

@@ -1,0 +1,39 @@
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.income") %></h3>
+					<div class="box-tools total-table">
+						<%= t("layout.gross_income") %>: <%= format_money(@gross_income) %>
+					</div>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-striped">
+						<tr>
+							<th><%= t("table.origin") %></th>
+							<th><%= t("table.description") %></th>
+							<th><%= t("table.mode") %></th>
+							<th><%= t("table.value") %></th>
+							<th></th>
+						</tr>
+						<% @incomes.each do |income| %>
+							<tr>
+								<td><%= income.client.name %></td>
+								<td><%= income.description %></td>
+								<td><%= income.mode %></td>
+								<td><%= format_money(income.value) %></td>
+								<td><%= link_to "", edit_income_path(income), class: "fa fa-edit", title: t("link.edit") %></td>
+							</tr>
+						<% end %>
+					</table>
+					<div class="box-footer clearfix">
+						<div class="pagination pagination-sm no-margin pull-right">
+							<%= will_paginate @incomes %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

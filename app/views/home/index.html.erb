@@ -1,0 +1,380 @@
+<section class="content-header">
+	<h1>
+		<%= t("title.expenses") %>
+	</h1>
+</section>
+<section class="content">
+	<div class="row">
+		<!-- COMIDA -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-yellow">
+				<div class="inner">
+					<% @date = Date.today - @records_food.count.months %>
+					<% @records_food.each do |food| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(food) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.food") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- COMBUSTIVEL -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-purple">
+				<div class="inner">
+					<% @date = Date.today - @records_fuel.count.months %>
+					<% @records_fuel.each do |fuel| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(fuel) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.fuel") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- ÁGUA -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-red">
+				<div class="inner">
+					<% @date = Date.today - @records_water.count.months %>
+					<% @records_water.each do |water| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(water) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.water") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- LUZ -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-blue">
+				<div class="inner">
+					<% @date = Date.today - @records_light.count.months %>
+					<% @records_light.each do |light| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(light) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.energy") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- TELEFONE -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-maroon">
+				<div class="inner">
+					<% @date = Date.today - @records_phone.count.months %>
+					<% @records_phone.each do |phone| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(phone) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.phone") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- UNIMED -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-teal">
+				<div class="inner">
+					<% @date = Date.today - @records_unimed.count.months %>
+					<% @records_unimed.each do |unimed| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(unimed) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.unimed") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- MURILO -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-aqua">
+				<div class="inner">
+					<% @date = Date.today - @records_murilo.count.months %>
+					<% @records_murilo.each do |murilo| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(murilo) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.murilo") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- OUTROS -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-yellow">
+				<div class="inner">
+					<% @date = Date.today - @records_others.count.months %>
+					<% @records_others.each do |others| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(others) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.others") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- CARRO -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-purple">
+				<div class="inner">
+					<% @date = Date.today - @records_car.count.months %>
+					<% @records_car.each do |car| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(car) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.car") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- CASA -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-red">
+				<div class="inner">
+					<% @date = Date.today - @records_home.count.months %>
+					<% @records_home.each do |home| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(home) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.home") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- DESPESA -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-blue">
+				<div class="inner">
+					<% @date = Date.today - @records_expense.count.months %>
+					<% @records_expense.each do |expense| %>
+						<% @date += 1.month %>
+		      	<b><%= format_month(@date) %> - <%= format_money(expense) %></b><br>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("box.total_expense") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- SALDO -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-green">
+				<div class="inner">
+					<h3><%= format_money(@balance) %></h3>
+					<p><%= t("box.total") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("link.balance") %></b>
+				<% end %>
+			</div>
+		</div>
+		<!-- SALDO PROPRIO -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-green">
+				<div class="inner">
+					<h3><%= format_money(@my_balance) %></h3>
+					<p><%= t("box.total") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<b><%= t("link.my_balance") %></b>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="content-header">
+	<h1>
+		<%= t("title.herbalife") %>
+	</h1>
+</section>
+<section class="content">
+	<div class="row">
+		<!-- CLIENTES ATIVOS -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-green">
+				<div class="inner">
+					<h3><%= @clients_active_quantity.count %></h3>
+					<p><%= t("box.active") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-person-stalker"></i>
+				</div>
+				<%= link_to herba_clients_path, class: "small-box-footer" do %>
+					<%= t("link.clients") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<!-- PRODUTOS PENDENTES -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-yellow">
+				<div class="inner">
+					<h3><%= @items_quantity %></h3>
+					<p><%= t("box.not_payment") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-ios7-cart-outline"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<%= t("link.products") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<!-- PRODUTOS PAGOS -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-purple">
+				<div class="inner">
+					<h3><%= @payment_quantity %></h3>
+					<p><%= t("box.payment") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-bag"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<%= t("link.products") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<!-- RESULTADOS PESO -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-aqua">
+				<div class="inner">
+					<h3><%= format_result_kg(@result) %></h3>
+					<p><%= t("box.weight") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<%= t("link.result") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<!-- SALDO -->
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-aqua">
+				<div class="inner">
+					<h3><%= format_money(@client.try(:balance)) %></h3>
+					<p><%= t("box.total") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<%= t("link.balance") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-blue">
+				<div class="inner">
+					<h3><%= format_money(@total_receivables) %></h3>
+					<p><%= t("box.total") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "", class: "small-box-footer" do %>
+					<%= t("link.to_receive") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-maroon">
+				<div class="inner">
+					<h3><%= format_money(@income_current_month) %></h3>
+					<p><%= t("box.total") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<%= t("link.income_current_month") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-teal">
+				<div class="inner">
+					<h3><%= format_money(@total_income) %></h3>
+					<p><%= t("box.total") %></p>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to herba_incomes_path, class: "small-box-footer" do %>
+					<%= t("link.gross_income") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-lg-3 col-xs-6">
+			<div class="small-box bg-red">
+				<div class="inner">
+					<% @incomes.each do |income| %>
+		      	<%= format_month(@date) %> - <%= format_money(income) %><br>
+		      	<% @date += 1.month %>
+		      <% end %>
+				</div>
+				<div class="icon">
+					<i class="ion ion-stats-bars"></i>
+				</div>
+				<%= link_to "#", class: "small-box-footer" do %>
+					<%= t("link.history_income") %> <i class="fa fa-arrow-circle-right"></i>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

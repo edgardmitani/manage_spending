@@ -1,0 +1,38 @@
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title"><%= t("title.items") %></h3>
+					<div class="total-table">
+						<%= "#{t("title.to_receive")}: #{format_money(@client.payment_balance)}" %>
+					</div>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-striped">
+						<tr>
+							<th>ID</th>
+							<th><%= t("table.product") %></th>
+							<th><%= t("table.price") %></th>
+							<th><%= t("table.delivery_date") %></th>
+							<th><%= t("table.payment_date") %></th>
+							<th><%= t("table.product_date") %></th>
+							<th></th>
+						</tr>
+						<% @client.herba_items.each do |item| %>
+							<tr>
+								<td><%= item.herba_product.code %></td>
+								<td><%= item.herba_product.name %></td>
+								<td><%= format_money(item.price) %></td>
+								<td><%= item.delivery_date ? format_date(item.delivery_date) : link_to(t("link.confirm_delivery"), confirm_delivery_item_path(item), method: :post, data: { confirm: t("flash_message.are_you_sure") }) %></td>
+								<td><%= format_date(item.payment_date) %></td>
+								<td><%= format_date(item.product_date) %></td>
+								<td><%= link_to "", edit_herba_item_path(item), class: "fa fa-edit", title: t("link.edit") %></td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

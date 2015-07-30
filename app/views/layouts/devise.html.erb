@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="bg-black">
+  <head>
+    <title>Mitanix</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="bg-black">
+    <% if notice.present? %>
+      <div class="msg msg-ok">
+        <p><strong><%= notice %></strong></p>
+        <a href="#" class="close">close</a>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="msg msg-error">
+        <p><strong><%= alert %></strong></p>
+        <a href="#" class="close">close</a>
+      </div>
+    <% end %>
+    <div class="form-box" id="login-box">
+      <%= yield %>
+    </div>
+  </body>
+</html>

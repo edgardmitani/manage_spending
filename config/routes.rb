@@ -1,4 +1,52 @@
 Rails.application.routes.draw do
+  LOCALES = /en|pt\-BR/
+
+  scope "(:locale)", locale: LOCALES do
+    get 'home/index'
+
+    resources :home_categories
+    resources :herba_categories
+
+    resources :home_clients
+    resources :herba_clients
+
+    resources :herba_incomes
+    resources :herba_items do
+      member do
+        post "confirm_delivery"
+      end
+    end
+
+    resources :herba_products do
+      member do
+        post "add_item"
+      end
+    end
+
+    resources :herba_profiles
+
+    resources :herba_titles
+
+    resources :home_transactions do
+      collection do
+        get "new_credit_card"
+        post "create_credit_card"
+        get "new_transfer"
+        post "create_transfer"
+      end
+    end
+
+    resources :herba_transactions
+
+    if Rails.env.production?
+      devise_for :users, :controllers => { :registrations => "registrations" } 
+    else
+      devise_for :users
+    end
+  end
+
+  get "/:locale" => "home#index", locale: LOCALES
+  root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
