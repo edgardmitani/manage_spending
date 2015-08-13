@@ -2,10 +2,8 @@ class HomeController < ApplicationController
 	before_action :authenticate_user!
 	
   def index
-  	@clients_quantity = HerbaClient.where("id > 1").count
-    @clients_active_quantity = HerbaItem.where("date(product_date) >= ?", Date.today).group(:herba_client_id).count
-  	@items_quantity = HerbaItem.not_payment.count
-    @payment_quantity = HerbaItem.payment.count
+    @home = Home.new
+
     @result = nil
   	incomes = []
     income_object = HerbaIncome.new
