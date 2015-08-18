@@ -83,7 +83,7 @@ class HomeTransactionsController < ApplicationController
     transaction = HomeTransaction.new
     transaction.value = params[:home_transaction][:value]
     transaction.home_client_id = params[:to_client_id]
-    transaction.home_category_id = 3
+    transaction.home_category_id = 11
     transaction.mode = "credit"
     transaction.description = "Akio"
     transaction.save
