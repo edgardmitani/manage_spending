@@ -6,7 +6,7 @@ class HerbaProduct < ActiveRecord::Base
 	belongs_to :herba_category
 
 	def add_item(client_id, product)
-		profit = product.price * (HerbaClient.first.title.discount/100)
+		profit = product.price * (HerbaClient.first.herba_title.discount/100)
     HerbaItem.create(herba_client_id: client_id, herba_product_id: product.id, price: product.price, profit: profit)
 	end
 end

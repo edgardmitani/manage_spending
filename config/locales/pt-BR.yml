@@ -34,6 +34,7 @@ pt-BR:
   layout:
     balance: "Saldo"
     gross_income: "Renda Bruta"
+    pending: "Pendente"
 
   link:
     add: "Adicionar"

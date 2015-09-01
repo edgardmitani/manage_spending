@@ -33,14 +33,14 @@ class HomeTransaction < ActiveRecord::Base
 
 	#DESPESA NO MES
 	def expense_current_month
-		HomeTransaction.debits.expense.by_month(Date.today).sum(:value)
+		HomeTransaction.debits.expense.by_month(Time.now).sum(:value)
 	end
 
 	#DESPESA COMIDA
 	def records_food
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.food.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.food.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -49,7 +49,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_water
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.water.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.water.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -58,7 +58,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_light
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.light.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.light.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -67,7 +67,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_phone
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.phone.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.phone.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -76,7 +76,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_unimed
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.unimed.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.unimed.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -85,7 +85,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_fuel
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.fuel.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.fuel.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -94,7 +94,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_murilo
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.murilo.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.murilo.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -103,7 +103,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_others
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.others.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.others.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -112,7 +112,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_car
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.car.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.car.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -121,7 +121,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_home
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.home.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.home.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
@@ -130,7 +130,7 @@ class HomeTransaction < ActiveRecord::Base
 	def records_expense
 		array = []
 		4.times do |i|
-			array << HomeTransaction.debits.expense.by_month(Date.today - (i).months).sum(:value)
+			array << HomeTransaction.debits.expense.by_month(Time.now - (i).months).sum(:value)
 	end
 	array.reverse
 	end
